@@ -1,3 +1,14 @@
+% [1]   D. Levicky and P. Foris, "Implementations of HVS Models in Digital Image 
+%       Watermarking," vol. 16, no. 1, pp. 45-50, Apr 2007.
+% [2]   A. Ahumada, A. J, and H. A. Peterson, Luminance-model-based DCT quantization 
+%       for color image compression. 1992.
+% [3]   H. A. Peterson, A. Ahumada, and A. Watson, An Improved Detection Model for DCT 
+%       Coefficient Quantization. 1993.
+% [4]   A. Watson, DCT quantization matrices visually optimized for individual images. 
+%       1993.
+% [5]   S. Voloshynovskiy, A. Herrigel, N. Baumgaertner, and T. Pun, A Stochastic 
+%       Approach to Content Adaptive Digital Image Watermarking. 1999, pp. 211-236.
+
 
 close all
 clear all
@@ -37,13 +48,13 @@ nvf = mat2cell(NVF(I),m_vec,n_vec);
 for m=1:num_sub_rows
     for n = 1:num_sub_cols
         dct_mat = dct2(J{m,n});
-        % create luminance adaption mask using watsons formula
+        % create luminance adaption mask using watsons formula from eq 6 in paper [4]
         luminance_mask{m,n} = sensitivity_mask.*(dct_mat(1,1)/mean_dc).^0.649;
-        % create contrast maskk using watson formula
+        % create contrast mask using levicky's expression from eq 6 of paper [1]
         contrast_mask_levicky{m,n} = luminance_mask{m,n}.*mask_effect_HVS(dct_mat,luminance_mask{m,n},nvf{m,n});  
 
         % can use contrast mask to deterine best embedding locations, i.e. those
-        % with the largest JND's at the specific embeddinf freq's
+        % with the largest JND's at the specific embedding freq's
         Ep(pos,1) = m;      % save row location
         Ep(pos,2) = n;      % save col location
         Ep(pos,3) = mean2(contrast_mask_levicky{m,n}); 
