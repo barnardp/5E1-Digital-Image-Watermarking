@@ -1,3 +1,5 @@
+% main function to demonstrate the HVS model from Levicky's paper
+
 % [1]   D. Levicky and P. Foris, "Implementations of HVS Models in Digital Image 
 %       Watermarking," vol. 16, no. 1, pp. 45-50, Apr 2007.
 % [2]   A. Ahumada, A. J, and H. A. Peterson, Luminance-model-based DCT quantization 
