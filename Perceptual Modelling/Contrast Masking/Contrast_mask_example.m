@@ -162,7 +162,7 @@ T_single = T(2:end,1); % i.e for j = 0, only model for i>0
 CSF = 1./T_single';
 
 % fit line to points
-p = polyfit(f_spat(2:end,1)',CSF,5);   % fit quadratic
+p = polyfit(f_spat(2:end,1)',CSF,5);   % fit line of order 5
 x1 = linspace(1,max(f_spat(2:8)));
 y1 = polyval(p,x1);
 % plot
